@@ -14,14 +14,26 @@
     <div class="container">
         <div>
             <div class="new-notes">
-                <div>
-                    <form action="">
-                        <button class="add-note">Add a new note here!</button>
-                    </form>
-                </div>
+                <form action="">
+                    <button class="add-note">Add a new note here!</button>
+                </form>
             </div>
             <div class="existing-notes"></div>
         </div>
+    </div>
+    <div class="note-modal">
+        <span class="close">&times;</span>
+        <h2 id="modal-title">Note</h2>
+        <textarea id="modal-text"></textarea>
+        <button class="edit-note">Edit</button>
+        <button class="delete-note">Delete</button>
+    </div>
+    <div class="add-note-modal">
+        <span class="close">&times;</span>
+        <h2>Add New Note</h2>
+        <input type="text" id="newNoteTitle" placeholder="Note Title">
+        <textarea placeholder="Text Content" id="newNoteText"></textarea>
+        <button class="save-note">Save Note</button>
     </div>
 
     <script src="script.js"></script>

@@ -17,3 +17,47 @@ body{
     justify-content: center;
 }
 
+
+
+/*
+function updateDisplay(notes){
+    notesList.innerHTML = '';
+    for(let i=0; i < notes.length; i++){
+        let noteItem = document.createElement('div');
+        noteItem.className = 'note-item';
+        noteItem.innerHTML = `
+            <span>${notes[i].title}</span>
+            <button class="view-note" data-index="${i}">View</button>
+
+        `;
+        notesList.appendChild(noteItem);
+        /*let noteTitle = 
+    }
+}
+
+function addNote(){
+    let note = addNote.innerHTML();
+    if(note){
+        notes.push(note);
+        
+        updateDisplay();
+    }
+}
+
+function deleteNote(index){
+    if(index > 0 && index < notes.length){
+        notes.splice(index,1);
+    }
+}
+
+function editNote(index, newNoteText){
+    newNoteText = prompt("Edit your note here: " + notes[index]);
+    if(newNoteText !== null && newNoteText.trim() !== ''){
+        notes[index] = newNoteText.trim();
+    }
+}
+
+addNoteBtn = document.addEventListener("click", addNote);
+
+updateDisplay();
+*/
