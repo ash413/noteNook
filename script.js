@@ -22,14 +22,16 @@ function displayNotes(){
         let noteItem = document.createElement('div');
         noteItem.className = 'note-item';
         noteItem.innerHTML = `
-        <span>${notes[index].title}</span>
+        <span>${notes[i].title}</span>
         <button class="view-note" data-index="${i}">View Note</button>
         `;
+        notesList.appendChild(noteItem);
     }
 
-    let viewButton = document.querySelectorAll(".view-note");
+    let viewButtons = document.querySelectorAll(".view-note");
+
     for(let i=0; i < notes.length; i++){
-        viewButton[i].addEventListener("click", function(){
+        viewButtons[i].addEventListener("click", function(){
             openNoteModal(this.getAttribute('data-index'));
         });
     }
@@ -40,7 +42,7 @@ function displayNotes(){
 function openAddNoteModal(){
     newNoteTitle.value = '';
     newNoteText.value = '';
-    addNoteModal.display.style = "block";
+    addNoteModal.style.display = "block";
 }
 
 function saveNewNote(){
@@ -56,45 +58,45 @@ function saveNewNote(){
     }
 }
 
-function editNote(index, newTextContent){
-
+function editNote(index){
+    notes[index].content = modalText.value;
+    displayNotes();
+    closeModal(noteModal);
 }
 
 function deleteNote(index){
-
+    notes.splice(index, 1);
+    displayNotes();
+    closeModal(noteModal);
 }
 
+function openNoteModal(index){
+    modalTitle.textContent = notes[index].title;
+    modalText.value = notes[index].text;
+    modalText.style.display = "block";
 
+    editBtn.onclick = function() { editNote(index); };
+    deleteBtn.onclick = function() { deleteNote(index); };
+}
 
+function closeModal(modal){
+    modalText.style.display = "none";
+}
 
+addNoteBtn.addEventListener("click", openAddNoteModal);
+saveNoteBtn.addEventListener("click", saveNewNote);
+for(let i=0; i < notes.length; i++){
+    closeNoteBtn[i].addEventListener("click", function(){
+        closeModal(this.closest('.modal'));
+    });
+}
+window.addEventListener("click", function(event){
+    if(event.target == noteModal){
+        closeModal(noteModal);
+    }
+    else if(event.target == addNoteModal){
+        closeModal(addNoteModal);
+    }
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+displayNotes();
