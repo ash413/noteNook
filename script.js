@@ -7,12 +7,15 @@ let modalText = document.getElementById("modal-text");
 
 let editBtn = document.querySelector(".edit-note");
 let deleteBtn = document.querySelector(".delete-note");
-let closeNoteBtn = document.querySelectorAll(".close");
+let closeButtons = document.querySelectorAll(".close");
 
 let addNoteModal = document.querySelector(".add-note-modal");
 let newNoteTitle = document.getElementById("newNoteTitle");
 let newNoteText = document.getElementById("newNoteText");
 let saveNoteBtn = document.querySelector(".save-note");
+
+let editMode = false;
+let currentEditIndex = -1;
 
 let notes = JSON.parse(localStorage.getItem('notes')) || [];
 
@@ -22,7 +25,7 @@ function displayNotes(){
         let noteItem = document.createElement('div');
         noteItem.className = 'note-item';
         noteItem.innerHTML = `
-        <span>${notes[i].title}</span>
+        <span class="note-title">${notes[i].title}</span>
         <button class="view-note" data-index="${i}">View Note</button>
         `;
         notesList.appendChild(noteItem);
@@ -30,7 +33,7 @@ function displayNotes(){
 
     let viewButtons = document.querySelectorAll(".view-note");
 
-    for(let i=0; i < notes.length; i++){
+    for(let i=0; i < viewButtons.length; i++){
         viewButtons[i].addEventListener("click", function(){
             openNoteModal(this.getAttribute('data-index'));
         });
@@ -39,29 +42,25 @@ function displayNotes(){
     localStorage.setItem('notes', JSON.stringify(notes));
 }
 
-function openAddNoteModal(){
+function openAddNoteModal(event){
+    event.preventDefault();  
     newNoteTitle.value = '';
     newNoteText.value = '';
     addNoteModal.style.display = "block";
 }
 
-function saveNewNote(){
+function saveNewNote(event){
+    event.preventDefault();  // Prevent form submission
     let title = newNoteTitle.value.trim();
     let text = newNoteText.value.trim();
     if(title && text){
-        notes.push({ title,text });
+        notes.push({ title, text });
         displayNotes();
         closeModal(addNoteModal);
     }
     else {
-        alert('Please enter both title and content for the node!');
+        alert('Please enter both title and content for the note!');
     }
-}
-
-function editNote(index){
-    notes[index].content = modalText.value;
-    displayNotes();
-    closeModal(noteModal);
 }
 
 function deleteNote(index){
@@ -71,25 +70,56 @@ function deleteNote(index){
 }
 
 function openNoteModal(index){
-    modalTitle.textContent = notes[index].title;
-    modalText.value = notes[index].text;
-    modalText.style.display = "block";
+    currentEditIndex = parseInt(index);
+    modalTitle.textContent = notes[currentEditIndex].title;
+    modalText.value = notes[currentEditIndex].text;
+    modalText.readOnly = true;
+    noteModal.style.display = "block";
+    editMode = false;
 
-    editBtn.onclick = function() { editNote(index); };
-    deleteBtn.onclick = function() { deleteNote(index); };
+    editBtn.textContent = "Edit";
+    editBtn.onclick = toggleEditMode;
+    deleteBtn.onclick = function() { deleteNote(currentEditIndex); };
+}
+
+function toggleEditMode(){
+    if(editMode){
+        notes[currentEditIndex].text = modalText.value;
+        displayNotes();
+        modalText.readOnly = true;
+        editBtn.textContent = "Edit";
+        editMode = false;
+        closeModal(noteModal);
+    }
+    else {
+        modalText.readOnly = false;
+        editBtn.textContent = "Save";
+        editMode = true;
+    }
 }
 
 function closeModal(modal){
-    modalText.style.display = "none";
+    modal.style.display = "none";
+    if(modal === noteModal){
+        editMode = false;
+        editBtn.textContent = "Edit";
+        currentEditIndex = -1;
+    } else if(modal === addNoteModal) {
+        newNoteTitle.value = '';
+        newNoteText.value = '';
+    }
 }
 
 addNoteBtn.addEventListener("click", openAddNoteModal);
 saveNoteBtn.addEventListener("click", saveNewNote);
-for(let i=0; i < notes.length; i++){
-    closeNoteBtn[i].addEventListener("click", function(){
+
+// Event listeners for close buttons
+closeButtons.forEach(btn => {
+    btn.addEventListener("click", function(){
         closeModal(this.closest('.modal'));
     });
-}
+});
+
 window.addEventListener("click", function(event){
     if(event.target == noteModal){
         closeModal(noteModal);

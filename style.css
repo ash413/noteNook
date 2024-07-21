@@ -5,59 +5,61 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color:cornsilk
 }
 
 .heading{
-    margin-bottom: 100px;
+    margin-bottom: 60px;
+    font-size: 30px;
 }
 
 .container{
-    /*display: flex;
-    flex-direction: column;*/
+
+}
+
+.new-notes{
+    margin-bottom: 20px;
+    display: flex;
     justify-content: center;
 }
 
-
-
-/*
-function updateDisplay(notes){
-    notesList.innerHTML = '';
-    for(let i=0; i < notes.length; i++){
-        let noteItem = document.createElement('div');
-        noteItem.className = 'note-item';
-        noteItem.innerHTML = `
-            <span>${notes[i].title}</span>
-            <button class="view-note" data-index="${i}">View</button>
-
-        `;
-        notesList.appendChild(noteItem);
-        /*let noteTitle = 
-    }
+.add-note{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: cornflowerblue;
+    font-size: 20px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
 }
 
-function addNote(){
-    let note = addNote.innerHTML();
-    if(note){
-        notes.push(note);
-        
-        updateDisplay();
-    }
+.existing-notes{
+    display: flex;
 }
 
-function deleteNote(index){
-    if(index > 0 && index < notes.length){
-        notes.splice(index,1);
-    }
+.note-item{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
-function editNote(index, newNoteText){
-    newNoteText = prompt("Edit your note here: " + notes[index]);
-    if(newNoteText !== null && newNoteText.trim() !== ''){
-        notes[index] = newNoteText.trim();
-    }
+.note-title{
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
-addNoteBtn = document.addEventListener("click", addNote);
+.view-note{
+    border: none;
+    background-color: cadetblue;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
 
-updateDisplay();
-*/
