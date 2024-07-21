@@ -27,7 +27,7 @@ body{
     padding: 10px;
     border: none;
     border-radius: 10px;
-    background-color: cornflowerblue;
+    background-color: cadetblue;
     font-size: 20px;
     color: white;
     font-family: 'Courier New', Courier, monospace;
@@ -63,3 +63,26 @@ body{
     font-weight: 600;
 }
 
+.add-note-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cross{
+    display: flex;
+    justify-content: flex-start;
+}
+
+/*.close{
+    display: flex;
+    align-items: flex-start;
+}*/
+
+#newNoteTitle{
+    margin-bottom: 10px;
+}
+
+#newNoteText{
+    margin-bottom: 10px;
+}
