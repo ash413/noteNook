@@ -114,9 +114,12 @@ addNoteBtn.addEventListener("click", openAddNoteModal);
 saveNoteBtn.addEventListener("click", saveNewNote);
 
 // Event listeners for close buttons
-closeButtons.forEach(btn => {
-    btn.addEventListener("click", function(){
-        closeModal(this.closest('.modal'));
+document.querySelectorAll('.close').forEach(closeBtn => {
+    closeBtn.addEventListener('click', function() {
+        let modal = this.closest('.note-modal') || this.closest('.add-note-modal');
+        if (modal) {
+            closeModal(modal);
+        }
     });
 });
 

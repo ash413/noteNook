@@ -20,20 +20,26 @@
         <div class="existing-notes"></div>    
     </div>
     <div class="note-modal" style="display: none;">
-        <span class="close">&times;</span>
-        <h2 id="modal-title">Note</h2>
-        <textarea id="modal-text"></textarea>
-        <button class="edit-note">Edit</button>
-        <button class="delete-note">Delete</button>
+        <div class="cross-1">
+            <span class="close">&times;</span>
+        </div>
+        <div class="content">
+            <h2 id="modal-title">Note</h2>
+            <textarea id="modal-text"></textarea>
+            <button class="edit-note">Edit</button>
+            <button class="delete-note">Delete</button>
+        </div>
     </div>
     <div class="add-note-modal" >
         <div class="cross">
             <span class="close">&times;</span>
         </div>
-        <h2>Add New Note</h2>
-        <input type="text" id="newNoteTitle" placeholder="Note Title">
-        <textarea placeholder="Text Content" id="newNoteText"></textarea>
-        <button class="save-note">Save Note</button>
+        <div class="content">
+            <h2>Add New Note</h2>
+            <input type="text" id="newNoteTitle" placeholder="Note Title">
+            <textarea placeholder="Text Content" id="newNoteText"></textarea>
+            <button class="save-note">Save Note</button>
+        </div>
     </div>
 
     <script src="script.js"></script>

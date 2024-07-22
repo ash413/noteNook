@@ -1,6 +1,6 @@
 body{
     font-family: 'Courier New', Courier, monospace;
-    margin: 50px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,12 +9,12 @@ body{
 }
 
 .heading{
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     font-size: 30px;
 }
 
 .container{
-
+    margin-bottom: 50px;
 }
 
 .new-notes{
@@ -32,10 +32,13 @@ body{
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
+    margin-bottom: 20px;
 }
 
 .existing-notes{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
 }
 
 .note-item{
@@ -64,25 +67,77 @@ body{
 }
 
 .add-note-modal{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: none;
 }
 
 .cross{
     display: flex;
-    justify-content: flex-start;
+    margin-right: 10px;
 }
 
-/*.close{
+.content{
     display: flex;
-    align-items: flex-start;
-}*/
+    flex-direction: column;
+}
+
+.content h2{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
 
 #newNoteTitle{
     margin-bottom: 10px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 5px;
 }
 
 #newNoteText{
     margin-bottom: 10px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 5px;
+}
+
+.save-note{
+    border: none;
+    background-color: cadetblue;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+#modal-title{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#modal-text{
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.edit-note{
+    border: none;
+    background-color: cadetblue;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-weight: 600;
+}
+
+.delete-note{
+    border: none;
+    background-color: cadetblue;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-weight: 600;
 }
